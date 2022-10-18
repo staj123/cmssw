@@ -305,6 +305,8 @@ def miniAOD_customizeCommon(process):
 		    'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer16UL_ID_ISO_cff',
                     'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer17UL_ID_ISO_cff',
                     'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer18UL_ID_ISO_cff',
+		    'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Spring16_nonTrig_V1_cff',
+                    'RecoEgamma.ELectronIdentification.Identification.mvaElectronID_Winter22_122X_V1_cff']
                     ]
     switchOnVIDElectronIdProducer(process,DataFormat.MiniAOD, task)
     process.egmGsfElectronIDs.physicsObjectSrc = cms.InputTag("reducedEgamma","reducedGedGsfElectrons")
