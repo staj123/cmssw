@@ -48,7 +48,8 @@ electron_id_modules_WorkingPoints_nanoAOD = cms.PSet(
         'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_noIso_V2_cff',
         'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer16UL_ID_ISO_cff',
         'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer17UL_ID_ISO_cff',
-        'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Summer18UL_ID_ISO_cff',
+        'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_iso_V1_cff',
+        'RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_noIso_V1_cff',        
     ),
     WorkingPoints = cms.vstring(
         "egmGsfElectronIDs:cutBasedElectronID-Fall17-94X-V2-veto",
@@ -199,8 +200,17 @@ slimmedElectronsWithUserData = cms.EDProducer("PATElectronUserDataEmbedder",
     userFloats = cms.PSet(
         mvaFall17V1Iso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Fall17IsoV1Values"),
         mvaFall17V1noIso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Fall17NoIsoV1Values"),
+        
+        mvaWin22V1Iso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Win22IsoV1Values"),
+        mvaWin22V1noIso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Win22NoIsoV1Values"), 
+               
         mvaIso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Fall17IsoV2Values"),
         mvaNoIso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Fall17NoIsoV2Values"),
+        
+        mvaIso_RunIIIWinter22 = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Win22IsoV1Values"),
+        mvaNoIso_RunIIIWinter22 = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Win22NoIsoV1Values"),
+        
+        
         mvaHZZIso = cms.InputTag("electronMVAValueMapProducer:ElectronMVAEstimatorRun2Summer18ULIdIsoValues"),
         miniIsoChg = cms.InputTag("isoForEle:miniIsoChg"),
         miniIsoAll = cms.InputTag("isoForEle:miniIsoAll"),
@@ -227,6 +237,10 @@ slimmedElectronsWithUserData = cms.EDProducer("PATElectronUserDataEmbedder",
         mvaFall17V1noIso_WP90 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-noIso-V1-wp90"),
         mvaFall17V1noIso_WP80 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-noIso-V1-wp80"),
         mvaFall17V1noIso_WPL = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-noIso-V1-wpLoose"),
+        mvaWin22V1Iso_WP90 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Win22-iso-V1-wp90"),
+        mvaWin22V1Iso_WP80 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Win22-iso-V1-wp80"),
+        mvaWin22V1noIso_WP90 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Win22-noIso-V1-wp90"),
+        mvaWin22V1noIso_WP80 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Win22-noIso-V1-wp80"),
 
         mvaIso_WP90 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-iso-V2-wp90"),
         mvaIso_WP80 = cms.InputTag("egmGsfElectronIDs:mvaEleID-Fall17-iso-V2-wp80"),
@@ -461,11 +475,23 @@ run2_nanoAOD_94X2016.toModify(electronTable.variables,
     mvaFall17V1Iso = Var("userFloat('ElectronMVAEstimatorRun2Fall17IsoV1Values')",float,doc="MVA Fall17 V1 Iso ID score"),
     mvaFall17V1Iso_WP80 = Var("electronID('mvaEleID-Fall17-iso-V1-wp80')",bool,doc="MVA Fall17 V1 Iso ID WP80"),
     mvaFall17V1Iso_WP90 = Var("electronID('mvaEleID-Fall17-iso-V1-wp90')",bool,doc="MVA Fall17 V1 Iso ID WP90"),
+    
     mvaFall17V1Iso_WPL = Var("electronID('mvaEleID-Fall17-iso-V1-wpLoose')",bool,doc="MVA Fall17 V1 Iso ID loose WP"),
+    
+    mvaWin22V1Iso = Var("userFloat('ElectronMVAEstimatorRun2Win22IsoV1Values')",float,doc="MVA Win22 V1 Iso ID score"),
+    mvaWin22V1Iso_WP80 = Var("electronID('mvaEleID-Win22-iso-V1-wp80')",bool,doc="MVA Win22 V1 Iso ID WP80"),
+    mvaWin22V1Iso_WP90 = Var("electronID('mvaEleID-Win22-iso-V1-wp90')",bool,doc="MVA Win22 V1 Iso ID WP90"),
+    
+    
     mvaFall17V1noIso = Var("userFloat('ElectronMVAEstimatorRun2Fall17NoIsoV1Values')",float,doc="MVA Fall17 V1 noIso ID score"),
     mvaFall17V1noIso_WP80 = Var("electronID('mvaEleID-Fall17-noIso-V1-wp80')",bool,doc="MVA Fall17 V1 noIso ID WP80"),
     mvaFall17V1noIso_WP90 = Var("electronID('mvaEleID-Fall17-noIso-V1-wp90')",bool,doc="MVA Fall17 V1 noIso ID WP90"),
     mvaFall17V1noIso_WPL = Var("electronID('mvaEleID-Fall17-noIso-V1-wpLoose')",bool,doc="MVA Fall17 V1 noIso ID loose WP"),
+    
+    mvaWin22V1noIso = Var("userFloat('ElectronMVAEstimatorRun2Win22NoIsoV1Values')",float,doc="MVA Win22 V1 noIso ID score"),
+    mvaWin22V1noIso_WP80 = Var("electronID('mvaEleID-Win22-noIso-V1-wp80')",bool,doc="MVA Win22 V1 noIso ID WP80"),
+    mvaWin22V1noIso_WP90 = Var("electronID('mvaEleID-Win22-noIso-V1-wp90')",bool,doc="MVA Win22 V1 noIso ID WP90"),
+    
     vidNestedWPBitmapSpring15 = Var("userInt('VIDNestedWPBitmapSpring15')",int,doc=_bitmapVIDForEleSpring15_docstring),
     vidNestedWPBitmapSum16 = Var("userInt('VIDNestedWPBitmapSum16')",int,doc=_bitmapVIDForEleSum16_docstring),
     pt = Var("pt*userFloat('ecalTrkEnergyPostCorr')/userFloat('ecalTrkEnergyPreCorr')", float, precision=-1, doc="p_{T}"),
