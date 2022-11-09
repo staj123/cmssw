@@ -7,8 +7,8 @@ import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_iso
 import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_noIso_V1_cff as ele_fall17_noIso_v1
 import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_iso_V2_cff as ele_fall17_iso_v2
 import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Fall17_noIso_V2_cff as ele_fall17_noIso_v2
-import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_iso_V1_cff as ele_win22_iso_v1
-import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_noIso_V1_cff as ele_win22_noIso_v1
+import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_iso_V1_cff as ele_RunIIIWinter22_iso_v1
+import RecoEgamma.ElectronIdentification.Identification.mvaElectronID_Win22_noIso_V1_cff as ele_RunIIIWinter22_noIso_v1
 
 #photon mva ids
 import RecoEgamma.PhotonIdentification.Identification.mvaPhotonID_Spring16_nonTrig_V1_cff as pho_spring16_nt_v1
@@ -44,8 +44,8 @@ for ele_mva_cff in [
           ele_fall17_noIso_v1,
           ele_fall17_iso_v2,
           ele_fall17_noIso_v2,
-          ele_win22_iso_v1,
-          ele_win22_noIso_v1,
+          ele_RunIIIWinter22_iso_v1,
+          ele_RunIIIWinter22_noIso_v1
         ]:
 
     setup_mva(egamma_modifications[0].electron_config,
